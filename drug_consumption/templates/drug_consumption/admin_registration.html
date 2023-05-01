@@ -1,0 +1,143 @@
+ {% comment %} <form method="post">
+    {% csrf_token %}
+    {{userform}} 
+    {{adminform}}
+    <input type="submit" value="Register"/>
+</form>     {% endcomment %}
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Register - DrugTect</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'images/icons/drug_detect.png' %} "/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href=" {% static 'vendor/bootstrap/css/bootstrap.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %} ">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %} ">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %} ">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %} ">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('{% static 'images/banner.png' %} ');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form validate-form" method="post">
+                    {% csrf_token %}
+					{% if not user.is_staff%}
+						<span class="login100-form-title p-b-49">
+							Admin Register
+						</span>
+						<div class="login-form">
+							<div class="form-username">
+								<div class="form-username-label">Username</div>
+								<div class="form-username-input">{{userform.username}}</div>    
+							</div>
+							<div class="form-password">
+								<div class="form-password-label">Password</div>
+								<div class="form-password-input">{{userform.password1}}</div>    
+							</div>
+							<div class="form-password">
+								<div class="form-password-label"> Confirm Password</div>
+								<div class="form-password-input">{{userform.password2}}</div>    
+							</div>
+							<div class="form-username">
+								<div class="form-email-label">Email</div>
+								<div class="form-email-input">{{userform.email}}</div>    
+							</div>
+							<div class="form-username">
+								<div class="form-phone-label"> Phone</div>
+								<div class="form-phone-input">{{adminform.phone}}</div>    
+							</div>
+						</div>
+						<div class="container-login100-form-btn">
+							<div class="wrap-login100-form-btn">
+								<div class="login100-form-bgbtn"></div>
+								<button class="login100-form-btn">
+									Register
+								</button>
+							</div>
+						</div>
+					{%else%}
+						<span class="login100-form-title p-b-49">
+							Patient Register
+						</span>
+						<div class="login-form">
+							<div class="form-username">
+								<div class="form-username-label">Username</div>
+								<div class="form-username-input">{{userform.username}}</div>    
+							</div>
+							<div class="form-password">
+								<div class="form-password-label">Password</div>
+								<div class="form-password-input">{{userform.password1}}</div>    
+							</div>
+							<div class="form-password">
+								<div class="form-password-label"> Confirm Password</div>
+								<div class="form-password-input">{{userform.password2}}</div>    
+							</div>
+							<div class="form-username">
+								<div class="form-username-label"> Email</div>
+								<div class="form-email-input">{{userform.email}}</div>    
+							</div>
+							<div class="form-username">
+								<div class="form-username-label"> Age</div>
+								<div class="form-age-input">{{adminform.age}}</div>    
+							</div>
+							<div class="form-username">
+								<div class="form-username-label"> Gender</div>
+								<div class="form-username-input">{{adminform.gender}}</div>    
+							</div>
+						</div>
+						<div class="container-login100-form-btn">
+							<div class="wrap-login100-form-btn">
+								<div class="login100-form-bgbtn"></div>
+								<button class="login100-form-btn">
+									Register
+								</button>
+							</div>
+						</div>
+					{%endif%}
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/animsition/js/animsition.min.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %} "></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/daterangepicker/moment.min.js' %} "></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/countdowntime/countdowntime.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %} "></script>
+
+</body>
+</html> 
+

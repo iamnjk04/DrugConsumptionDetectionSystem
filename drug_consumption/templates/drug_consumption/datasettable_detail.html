@@ -1,0 +1,256 @@
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Drug Data List-DrugTect</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+
+   <link rel="icon" type="image/png" href="{% static 'images/icons/drug_detect.png' %} "/>
+   <!-- bootstrap css -->
+   <link rel="stylesheet" href=" {% static 'css/bootstrap.min.css' %} ">
+   <!-- style css -->
+   <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+   <!-- Responsive-->
+   <link rel="stylesheet" href=" {% static 'css/responsive.css' %} ">
+   <!-- fevicon -->
+   <link rel="icon" href="images/fevicon.png" type="image/gif" />
+   <!-- Scrollbar Custom CSS -->
+   <link rel="stylesheet" href=" {% static 'css/jquery.mCustomScrollbar.min.css' %} ">
+   <!-- Tweaks for older IEs-->
+   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   <!-- owl stylesheets -->
+   <link rel="stylesheet" href=" {% static 'css/owl.carousel.min.css' %} ">
+   <link rel="stylesheet" href=" {% static 'css/jquery.mCustomScrollbar.min.css' %} ">
+   <link rel="stylesheet" href=" {% static 'css/owl.theme.default.min.css' %} ">
+   <link rel="stylesheet" href="{% static 'css/drugdatalist.css' %}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+</head>
+
+<body>
+   <!-- header section start -->
+   <div class="data_table">
+      <nav class="navbar">
+         <h2 class="logo"><a href="index.html">DrugTect</a></h2>
+      </nav>
+      <!-- header section end -->
+      <!-- banner section start -->
+      <div class="carousel-inner">
+         <div class="carousel-item active">
+            <div class="banner_section">
+               <div class="container">
+                   <div class="row row-details">
+                    <div class="data-details">
+                        <div class="details-heading"> Drug Data Details</div>
+                        <div  class="details-p-1">N Score: <div class="details-text">{{ object.nscore }}</div></div>
+                        <div class="details-p-1">O Score: <div class="details-text">{{ object.oscore }}</div></div>
+                        <div class="details-p-1">E Score: <div class="details-text">{{ object.escore }}</div></div>
+                        <div class="details-p-1">A Score: <div class="details-text">{{ object.ascore }}</div></div>
+                        <div class="details-p-1">C Score: <div class="details-text">{{ object.cscore }}</div></div>
+                        <div class="details-p-1">Drug-type: <div class="details-text">{{ object.drug_type }}</div></div>
+                        <div class="details-p-1">Impulsiveness: <div class="details-text">{{ object.impulsive }}</div></div>
+                        <div class="details-p-1">Ethnicity: <div class="details-text">{{ object.ethnicity }}</div></div>
+                        <div class="details-p-1">User Name: <div class="details-text">{{ object.datasetmodel }}</div></div>
+
+                        <input type="button" class="predict-button" value="Check Prediction"
+                                                onclick="submit({id: {{object.id}}})" /> {% endcomment %}
+                        {% comment %} <a href="{% url 'drug_consumption:predict' object.id%}">Predicit</a><br><br> {% endcomment %}
+                        {% comment %} <div class="details-p-1 hello"></div>
+                    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- footer section end -->
+<!-- copyright section start -->
+<div class="copyright_section">
+<div class="container">
+<p class="copyright_text">2023 All Rights Reserved.</p>
+</div>
+</div>
+<!-- copyright section end -->
+<!-- Javascript files-->
+<script src=" {% static 'js/jquery.min.js' %} "></script>
+<script src="{% static 'js/popper.min.js' %} "></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %} "></script>
+<script src="{% static 'js/jquery-3.0.0.min.js' %} "></script>
+<script src="{% static 'js/plugin.js' %} "></script>
+<!-- sidebar -->
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %} "></script>
+<script src="{% static 'js/custom.js' %} "></script>
+<!-- javascript -->
+<script src="{% static 'js/owl.carousel.js' %} "></script>
+<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+<script>
+    function submit({
+        id
+    }) {
+        fetch(`/predict/${id}/`)
+            .then(response => response.json())
+            .then(data => manipulate(data,id))
+    };
+    function manipulate(data,id){
+        console.log(data);
+        //console.log(id);
+        prediction_button = document.querySelector(`.predict-button`);
+        prediction_button.style.display = "none";
+        //section = document.querySelector(`.details-p-1`);
+        //section.style.display = "none";
+        prediction = document.querySelector(`.hello`);
+        console.log(prediction)
+        console.log(data['prediction']);
+        if(data['prediction']=="0"){
+            prediction.innerText = ` Prediction Status: CL0`;
+        }
+        else if(data['prediction']=="1"){
+            prediction.innerText = ` Prediction Status: CL1`;
+        }
+        else if(data['prediction']=="2"){
+            prediction.innerText = ` Prediction Status: CL2`;
+        }
+        else if(data['prediction']=="3"){
+            prediction.innerText = ` Prediction Status: CL3`;
+        }
+        else if(data['prediction']=="4"){
+            prediction.innerText = ` Prediction Status: CL4`;
+        }
+        else if(data['prediction']=="5"){
+            prediction.innerText = ` Prediction Status: CL5`;
+        }
+        //
+        //document.querySelector('.beruju_hide').style.display = "block";
+    }
+</script>
+
+</body>
+
+</html> {% endcomment %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Drug Data List- DrugTect</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'images/icons/drug.ico' %} "/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href=" {% static 'vendor/bootstrap/css/bootstrap.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %} ">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %} ">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %} ">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %} ">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('{% static 'images/banner.png' %} ');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+					<span class="login100-form-title  p-b-49">
+						Drug Data Details
+					</span>
+                    <div  class="details-p-1">N Score: <div class="details-text">{{ object.nscore }}</div></div>
+                     <div class="details-p-1">O Score: <div class="details-text">{{ object.oscore }}</div></div>
+                    <div class="details-p-1">E Score: <div class="details-text">{{ object.escore }}</div></div>
+                    <div class="details-p-1">A Score: <div class="details-text">{{ object.ascore }}</div></div>
+                    <div class="details-p-1">C Score: <div class="details-text">{{ object.cscore }}</div></div>
+                    <div class="details-p-1">Drug-type: <div class="details-text">{{ object.drug_type }}</div></div>
+                    <div class="details-p-1">Impulsiveness: <div class="details-text">{{ object.impulsive }}</div></div>
+                    <div class="details-p-1">Ethnicity: <div class="details-text">{{ object.ethnicity }}</div></div>
+                    <div class="details-p-1">User Name: <div class="details-text">{{ object.datasetmodel }}</div></div>
+                    <div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+                            <input type="button" class="predict-button login100-form-btn" value="Check Prediction"
+                                                    onclick="submit({id: {{object.id}}})" />
+                        </div>
+                    </div>
+                    <div class="details-p-1 hello"></div> 
+				
+			</div>
+		</div>
+	</div>
+	
+
+	
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/animsition/js/animsition.min.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %} "></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/daterangepicker/moment.min.js' %} "></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/countdowntime/countdowntime.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %} "></script>
+    <script>
+        function submit({
+            id
+        }) {
+            fetch(`/predict/${id}/`)
+                .then(response => response.json())
+                .then(data => manipulate(data,id))
+        };
+        function manipulate(data,id){
+            console.log(data);
+            prediction_button = document.querySelector(`.predict-button`);
+            prediction_button.style.display = "none";
+            prediction = document.querySelector(`.hello`);
+            console.log(prediction)
+            console.log(data['prediction']);
+            if(data['prediction']=="0"){
+                prediction.innerText = ` Prediction Status: CL0 (Never Used)`;
+            }
+            else if(data['prediction']=="1"){
+                prediction.innerText = ` Prediction Status: CL1(Used Over Decade)`;
+            }
+            else if(data['prediction']=="2"){
+                prediction.innerText = ` Prediction Status: CL2(Used in Last Decade)`;
+            }
+            else if(data['prediction']=="3"){
+                prediction.innerText = ` Prediction Status: CL3(Used in Last Year)`;
+            }
+            else if(data['prediction']=="4"){
+                prediction.innerText = ` Prediction Status: CL4(Used in Last Month)`;
+            }
+            else if(data['prediction']=="5"){
+                prediction.innerText = ` Prediction Status: CL5(Used in Last Week)`;
+            }
+        }
+    </script>
+
+</body>
+</html>  

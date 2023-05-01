@@ -1,0 +1,15 @@
+<ul>
+    <a href="{% url 'drug_consumption:drug_data_create'%}">Create</a> <br><br>
+    <!-- Iterate over object_list -->
+    {% for object in object_list %}
+    <!-- Display Objects -->
+            <li>Consumption: {{ object.consumption_status }}</li>
+            <li>Classification: {{ object.classification_status }}</li>
+            <li>{{ object.result.oscore }}</li>
+            <li>{{ object.result.ascore }}</li>
+            <hr>
+    <!-- If object_list is empty  -->
+    {% empty %}
+    <li>No objects yet.</li>
+    {% endfor %}
+</ul>

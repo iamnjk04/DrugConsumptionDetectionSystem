@@ -1,0 +1,139 @@
+ {% comment %} <form method="POST" enctype="multipart/form-data">
+ 
+    <!-- Security token -->
+    {% csrf_token %}
+ 
+    <!-- Using the formset -->
+    {{ form.as_p }}
+     
+    <input type="submit" value="Submit">
+</form>  {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Drug Info - DrugTect</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'images/icons/drug.ico' %} "/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href=" {% static 'vendor/bootstrap/css/bootstrap.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %} ">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %} ">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %} ">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %} ">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %} ">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('{% static 'images/banner.png' %} ');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form validate-form" method="post">
+                    {% csrf_token %}
+					<span class="login100-form-title p-b-49">
+						Drug Info
+					</span>
+
+					<div class="login-form">
+                        <div class="form-username">
+                            <div class="form-username-label">N Score</div>
+    						<div class="form-username-input">{{form.nscore}}</div> 
+							  
+                        </div>
+						<span class="drug-info">
+							Enter the Score Between -4 and 3.5
+						</span> 
+						<div class="form-username">
+                            <div class="form-username-label">E Score</div>
+    						<div class="form-username-input">{{form.escore}}</div>    
+                        </div>
+						<span class="drug-info">
+							Enter the Score Between -3.5 and 3.5
+						</span> 
+						<div class="form-username">
+                            <div class="form-username-label">O Score</div>
+    						<div class="form-username-input">{{form.oscore}}</div>    
+                        </div>
+						<span class="drug-info">
+							Enter the Score Between -3.5 and 3.5
+						</span> 
+						<div class="form-username">
+                            <div class="form-username-label">A Score</div>
+    						<div class="form-username-input">{{form.ascore}}</div>    
+                        </div>
+						<span class="drug-info">
+							Enter the Score Between -3.5 and 3.5
+						</span> 
+						<div class="form-username">
+                            <div class="form-username-label">C Score</div>
+    						<div class="form-username-input">{{form.cscore}}</div>    
+                        </div>
+						<span class="drug-info">
+							Enter the Score Between -3.5 and 3.5
+						</span>
+						<div class="form-username">
+                            <div class="form-username-label">Ethnicity</div>
+    						<div class="form-username-input">{{form.ethnicity}}</div>    
+                        </div>
+						<div class="form-username">
+                            <div class="form-username-label">Impulsiveness</div>
+    						<div class="form-impulsive-input">{{form.impulsive}}</div>    
+                        </div>
+						<span class="drug-info">
+							Enter the Score Between -3.0 and 3.0
+						</span> 
+ 
+						<div class="form-username">
+                            <div class="form-username-label">Drug Type</div>
+    						<div class="form-username-input">{{form.drug_type}}</div>    
+                        </div>
+                    </div>					
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Submit
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/animsition/js/animsition.min.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %} "></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/daterangepicker/moment.min.js' %} "></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/countdowntime/countdowntime.js' %} "></script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %} "></script>
+
+</body>
+</html> 
