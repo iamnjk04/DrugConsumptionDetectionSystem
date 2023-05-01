@@ -15,6 +15,7 @@ It uses the Database that contains records for 1885 respondents extracted from k
 <li> matplotlib</li>
 <li>NumPy</li>
 <li> Pandas </li>
+<li> Pickle </li>
 </ul>
 
 <h3> Features used are:</h3>
